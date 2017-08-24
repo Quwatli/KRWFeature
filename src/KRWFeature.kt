@@ -3,50 +3,66 @@ import java.io.FileWriter
 import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
+
+    menu()
+    run()
+
+
+}
+
+fun run () {
+
     var op: Int?
     var msg: String?
 
-    menu()
-
-
-    op = readLine()!!.toInt()
-
-    while (op == null) {
-        println("Please select an option from the menu")
+    try {
         op = readLine()!!.toInt()
-    }
 
-    while (op != 3) {
-
-
-        when (op) {
-
-            1 -> {
-                msg = readLine().toString()
-                println("Writing...")
-                write(msg)
-                println("File written successfully")
-                read()
-
-            }
-
-            2 -> {
-                println("Reading...")
-                read()
-
-            }
-
-            3 -> {
-                println("Exiting...")
-                exitProcess(0)
-
-            }
-
-
+        while (op == null) {
+            println("Please select an option from the menu")
+            op = readLine()!!.toInt()
         }
-        op = readLine()!!.toInt()
-    }
 
+        while (op != 3) {
+
+
+            when (op) {
+
+                1 -> {
+                    msg = readLine().toString()
+                    println("Writing...")
+                    write(msg)
+                    println("File written successfully")
+                    read()
+
+                }
+
+                2 -> {
+                    println("Reading...")
+                    read()
+
+                }
+
+                3 -> {
+                    println("Exiting...")
+                    exitProcess(0)
+
+                }
+
+                else -> {
+                    println("Your Choice Must Be Either 1 to write, 2 to read or 3 to exit")
+                    run()
+                }
+
+
+            }
+            op = readLine()!!.toInt()
+        }
+    } catch (e: Exception) {
+        println("Please make sure your input is an integer and try again\n")
+        menu()
+        run()
+    }
 }
 
 fun menu() {
